@@ -7,11 +7,6 @@ quand le texte dit
 c’est un objet Choix.*/
 
 package graph;
-<<<<<<< Updated upstream
-=======
-//test si-ssa
-
->>>>>>> Stashed changes
 import java.util.List;
 
 public class Choix {
