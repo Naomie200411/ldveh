@@ -14,34 +14,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Paragraphe {
-    private int numero;
+    private int id;
     private String texte;
     private List<Choix> choixDisponibles;
+    private List<Objet> objets = new ArrayList<>();
 
-    public Paragraphe(int numero, String texte) {
-        this.numero = numero;
+    public Paragraphe(int id, String texte) {
+        this.id = id;
         this.texte = texte;
         this.choixDisponibles = new ArrayList<>();
     }
 
-    public void ajouterChoix(Choix choix) {
-        this.choixDisponibles.add(choix);
+    public int getId() {
+        return id;
+    }
+
+    public String getTexte() {
+        return texte;
     }
 
     public void setTexte(String texte) {
         this.texte = texte;
     }
 
-    public int getnumero() { 
-        return numero; 
+    public List<Choix> getChoixDisponibles() {
+        return choixDisponibles;
     }
 
-    public String getTexte() { 
-        return texte; 
-    }
-
-    public List<Choix> getChoixDisponibles() { 
-        return choixDisponibles; 
+    public void ajouterChoix(Choix choix) {
+        this.choixDisponibles.add(choix);
     }
 
     public void ajouterObjet(Objet objet) {
@@ -52,8 +53,8 @@ public class Paragraphe {
         return objets;
     }
 
-   @Override
+    @Override
     public String toString() {
-        return "Paragraphe " + numero + ": " + texte + "\nChoix: " + choixDisponibles;
+        return "Paragraphe " + id + ": " + texte + "\nChoix: " + choixDisponibles;
     }
 }

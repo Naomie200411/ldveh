@@ -3,7 +3,7 @@
 
 Garder tous les objets que tu as trouvés.
 
-C’est ton sac.*/*
+C’est ton sac.*/
 
 
 package graph;
