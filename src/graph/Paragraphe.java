@@ -16,17 +16,24 @@ import java.util.List;
 public class Paragraphe {
     private int id;
     private String texte;
+    private String type;
     private List<Choix> choixDisponibles;
-    private List<Objet> objets = new ArrayList<>();
+    private List<Objet> objets ;
 
     public Paragraphe(int id, String texte) {
         this.id = id;
         this.texte = texte;
         this.choixDisponibles = new ArrayList<>();
+        this.objets = new ArrayList<>();
+        this.type = "Livre"
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getId() {
+        return type;
     }
 
     public String getTexte() {
