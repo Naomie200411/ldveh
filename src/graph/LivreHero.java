@@ -58,8 +58,21 @@ les met dans l’inventaire
 🔹 getParagraphes()
 
 👉 Permet d’avoir tout le livre
-(utilisé pour le graphe et les analyses)    
+(utilisé pour le graphe et les analyses)  
+
+
+
+
  
+paragraphes → contient tous les paragraphes du livre.
+
+La clé est le numéro du paragraphe, la valeur est l’objet Paragraphe.
+
+LinkedHashMap est utilisé pour préserver l’ordre d’insertion.
+
+inventaire → l’inventaire du joueur, qui stocke les objets récupérés.
+
+titre, auteur, langue, nombrePages → métadonnées du livre.
  
  */
 package graph;
@@ -151,8 +164,8 @@ public class LivreHero implements Iterable<Paragraphe> {
 
                 // 🔹 fin de l'en-tête
                 if (!enteteLu) {
+                    lireEntete(entete);
                     enteteLu = true;
-                    lireEntete(entete);   // 👈 NOUVEAU
                 }
 
                 // ===== TA LOGIQUE ORIGINALE (inchangée) =====
@@ -201,7 +214,10 @@ public class LivreHero implements Iterable<Paragraphe> {
     }
 
 
+   /*Affiche le texte du paragraphe.
+     Ajoute tous les objets du paragraphe à l’inventaire du joueur.
 
+     Affiche les choix disponibles. */
 
     public void jouerParagraphe(int numero) {
         Paragraphe p = paragraphes.get(numero);

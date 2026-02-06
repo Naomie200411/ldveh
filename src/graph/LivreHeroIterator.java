@@ -1,3 +1,11 @@
+/*Cette classe est un itérateur personnalisé pour parcourir les paragraphes de
+ LivreHero. 
+ 
+ it → l’iterator réel sur paragraphes.values().
+
+courant → garde une référence au dernier paragraphe retourné, utile pour remove().
+*/
+
 package graph;
 
 import java.util.*;
