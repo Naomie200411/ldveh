@@ -32,7 +32,7 @@ public class Paragraphe {
         return id;
     }
 
-    public int getId() {
+    public int getType() {
         return type;
     }
 
