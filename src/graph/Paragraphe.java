@@ -25,7 +25,7 @@ public class Paragraphe {
         this.texte = texte;
         this.choixDisponibles = new ArrayList<>();
         this.objets = new ArrayList<>();
-        this.type = "Livre"
+        this.type = "Livre";
     }
 
     public int getId() {
