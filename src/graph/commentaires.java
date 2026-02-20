@@ -11,7 +11,6 @@ public class commentaires {
     Paragraphe 16 → 1
     Paragraphe 11 → 2
     Paragraphe 20 → 1
-    Paragraphe 50 → 2
     Paragraphe 50 → (victoire)
 
     départ 10 arrivée 50
@@ -31,6 +30,41 @@ public class commentaires {
     Précédents = {16→10, 11→10, 20→10, 50→10}
 
     🔹 On trouve 50 immédiatement dans les voisins de 10*/
+
+
+
+    /*
+    Trouver tous les chemins gagnants à partir d'un départ
+
+    un exemple concret avec les noeuds :   Paragraphe 10 → 16 ,11 , 20 ,50
+    Paragraphe 16 → 1
+    Paragraphe 11 → 2
+    Paragraphe 20 → (victoire)
+    Paragraphe 50 → (victoire) 10 est le départ 50 une victoire , 20 aussi une victoire les flèches à droite donnent les voisins de chauque noeud
+
+
+    Le backtracking signifie :
+
+    👉 "Je descends dans un chemin…
+    si j’arrive au bout, je reviens en arrière pour essayer un autre chemin."
+
+    C’est exactement comme dans un labyrinthe :
+
+    Tu avances
+
+    Tu arrives dans un cul-de-sac
+
+    Tu reviens au dernier croisement
+
+    Tu prends un autre chemin
+
+    chemin.pop();
+
+    javac -d build src/graph/*.java
+
+    java -cp build graph.Main
+    
+    */
 }
 
 

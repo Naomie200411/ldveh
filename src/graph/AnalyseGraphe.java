@@ -30,7 +30,7 @@ public class AnalyseGraphe {
      * 🔹 Trouve tous les chemins gagnants à partir d'un paragraphe de départ
      */
     public List<List<Integer>> trouverCheminsGagnants(int depart) {
-        List<List<Integer>> chemins = new ArrayList<>();
+        List<List<Integer>> chemins = new LinkedList<>();
         Stack<Integer> cheminActuel = new Stack<>();
         explorerChemins(depart, cheminActuel, chemins);
         return chemins;
@@ -44,7 +44,7 @@ public class AnalyseGraphe {
 
         // Si on atteint une victoire, on ajoute le chemin
         if (victoires.contains(courantId)) {
-            chemins.add(new ArrayList<>(cheminActuel));
+            chemins.add(new LinkedList<>(cheminActuel));
         } else {
             // Explorer tous les voisins
             NoeudGraphe courant = graphe.getNoeuds().get(courantId);
