@@ -1,7 +1,67 @@
-1 Vous êtes dans une forêt. 
-   Si vous allez à gauche, rendez-vous au 12.
-   Si vous allez à droite, rendez-vous au 34.
+1
+Vous vous réveillez au cœur d’une forêt sombre. Un sentier part vers la gauche et un autre vers la droite.
+   Si vous prenez le sentier de gauche, rendez-vous au 12.
+   Si vous prenez le sentier de droite, rendez-vous au 8.
 
-12 Vous tombez dans un piège. Rendez-vous au 1.
-34 Vous trouvez un coffre. Rendez-vous au 50.
+8
+Le sentier vous mène à une vieille cabane abandonnée.
+   Si vous entrez dans la cabane, rendez-vous au 20.
+   Si vous continuez votre chemin dans la forêt, rendez-vous au 15.
 
+12
+Vous avancez dans la forêt et entendez un bruit étrange derrière un buisson.
+   Si vous regardez derrière le buisson, rendez-vous au 5.
+   Si vous préférez continuer votre chemin sans vous arrêter, rendez-vous au 18.
+
+5
+Un loup surgit du buisson et vous attaque. Vous n’avez aucune arme pour vous défendre.
+Votre aventure se termine ici.
+
+15
+Vous arrivez devant une rivière rapide.
+   Si vous essayez de traverser la rivière, rendez-vous au 22.
+   Si vous suivez la rivière vers l’aval, rendez-vous au 30.
+
+18
+Le chemin mène à une clairière où se trouve un vieux puits.
+   Si vous regardez dans le puits, rendez-vous au 25.
+   Si vous quittez la clairière par un autre sentier, rendez-vous au 28.
+
+20
+Dans la cabane, vous trouvez une épée rouillée mais encore utilisable.
+   Si vous quittez la cabane avec l’épée, rendez-vous au 15.
+
+22
+Le courant est trop fort et vous êtes emporté par la rivière.
+Votre aventure se termine ici.
+
+25
+Au fond du puits, vous apercevez un coffre.
+   Si vous descendez dans le puits, rendez-vous au 40.
+   Si vous préférez partir, rendez-vous au 28.
+
+28
+Vous tombez face à un bandit qui vous bloque le passage.
+   Si vous combattez le bandit, rendez-vous au 35.
+   Si vous fuyez, rendez-vous au 1.
+
+30
+En suivant la rivière, vous découvrez un vieux pont en pierre.
+   Si vous traversez le pont, rendez-vous au 35.
+   Si vous continuez le long de la rivière, rendez-vous au 45.
+
+35
+Après une lutte difficile, vous réussissez à vaincre votre adversaire et trouvez un passage vers une colline.
+   Si vous montez sur la colline, rendez-vous au 50.
+
+40
+Vous ouvrez le coffre et découvrez un trésor oublié.
+Vous avez gagné !
+
+45
+La rivière vous mène à une cascade infranchissable.
+Votre aventure se termine ici.
+
+50
+Du sommet de la colline, vous voyez la sortie de la forêt et la route vers votre village.
+Vous avez survécu à l’aventure !

@@ -63,6 +63,8 @@ public class commentaires {
     javac -d build src/graph/*.java
 
     java -cp build graph.Main
+
+    javac -cp "lib/*" -d build src/graph/*.java && java -cp "build:lib/*" graph.Main
     
     */
 }

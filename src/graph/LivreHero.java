@@ -116,6 +116,12 @@ public class LivreHero implements Iterable<Paragraphe> {
         return inventaire;
     }
 
+     public void printAllParagraphs() {
+        for (Paragraphe p : paragraphes.values()) {
+            System.out.println(p); 
+        }
+    }
+
 
 
     @Override
