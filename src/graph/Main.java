@@ -5,7 +5,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         LivreHero livre = new LivreHero();
-        livre.chargerDepuisFichier("/home/kotin251/Documents/ldveh/book/df-60-l-oeil-d-emeraude.txt");
+        livre.chargerDepuisFichier("book/df-60-l-oeil-d-emeraude.txt");
 
         GrapheLDVEH graphe = new GrapheLDVEH(livre);
 
@@ -32,6 +32,6 @@ public class Main {
         }*/
 
         AnalyseGraphe analyseGraphe = new AnalyseGraphe(graphe);
-        analyseGraphe.afficherCheminsGagnants(373);
+        analyseGraphe.afficherCheminsGagnants(1);
     }
 }

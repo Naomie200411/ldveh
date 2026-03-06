@@ -29,11 +29,18 @@ public class AnalyseGraphe {
     /**
      * 🔹 Trouve tous les chemins gagnants à partir d'un paragraphe de départ
      */
-    public List<List<Integer>> trouverCheminsGagnants(int depart) {
+    /*public List<List<Integer>> trouverCheminsGagnants(int depart) {
         List<List<Integer>> chemins = new LinkedList<>();
         Stack<Integer> cheminActuel = new Stack<>();
         explorerChemins(depart, cheminActuel, chemins);
         return chemins;
+    } */
+
+    public void trouverCheminsGagnants(int depart) {
+        List<List<Integer>> chemins = new LinkedList<>();
+        Stack<Integer> cheminActuel = new Stack<>();
+        explorerChemins(depart, cheminActuel, chemins);
+        //return chemins;
     }
 
     /**
@@ -44,7 +51,8 @@ public class AnalyseGraphe {
 
         // Si on atteint une victoire, on ajoute le chemin
         if (victoires.contains(courantId)) {
-            chemins.add(new LinkedList<>(cheminActuel));
+            //chemins.add(new LinkedList<>(cheminActuel));
+            System.out.println(cheminActuel);
         } else {
             // Explorer tous les voisins
             NoeudGraphe courant = graphe.getNoeuds().get(courantId);
@@ -63,7 +71,7 @@ public class AnalyseGraphe {
     /**
      * 🔹 Affiche tous les chemins gagnants depuis un départ
      */
-    public void afficherCheminsGagnants(int depart) {
+    /*public void afficherCheminsGagnants(int depart) {
         List<List<Integer>> chemins = trouverCheminsGagnants(depart);
 
         if (chemins.isEmpty()) {
@@ -74,5 +82,8 @@ public class AnalyseGraphe {
                 System.out.println(chemin);
             }
         }
-    }
+    } */
+    public void afficherCheminsGagnants(int depart) {
+       trouverCheminsGagnants(depart);
+    } 
 }
