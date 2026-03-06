@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.*;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,7 +31,8 @@ public class Main {
                 System.out.print(p + " ");
             }
             System.out.println();
-        }
+        }  // Menu interactif     //  Étape 1 : Charger un fichier
+        String filePath;
 
         AnalyseGraphe analyseGraphe = new AnalyseGraphe(graphe);
         analyseGraphe.afficherCheminsGagnants(1);
@@ -49,18 +51,31 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         LivreHero livre = new LivreHero();
+        String filePath;
 
-        //  Étape 1 : Charger un fichier
-        System.out.println("Entrez le chemin du fichier LDVEH :");
-        String filePath = scanner.nextLine();
-        livre.chargerDepuisFichier(filePath);
-        System.out.println("Livre chargé avec succès !");
+        while (true) {
+            System.out.println("Entrez le chemin du fichier LDVEH :");
+            filePath = scanner.nextLine();
+
+            File file = new File(filePath);
+
+            if (file.exists() && file.isFile()) {
+                try {
+                    livre.chargerDepuisFichier(filePath);
+                    System.out.println("Livre chargé avec succès !");
+                    break; // on sort de la boucle
+                } catch (Exception e) {
+                    System.out.println("Erreur lors du chargement du fichier.");
+                }
+            } else {
+                System.out.println("❌ Le fichier n'existe pas. Réessayez.");
+            }
+        }
 
         GrapheLDVEH graphe = new GrapheLDVEH(livre);
         AnalyseGraphe analyseGraphe = new AnalyseGraphe(graphe);
 
         while (true) {
-            // Menu interactif
             System.out.println("\n=== MENU ===");
             System.out.println("1. Afficher tous les paragraphes");
             System.out.println("2. Afficher un paragraphe spécifique");
