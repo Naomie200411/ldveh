@@ -60,6 +60,18 @@ public class Paragraphe {
         return objets;
     }
 
+    public void afficherObjets() {
+        if (objets.isEmpty()) {
+            System.out.println("Aucun objet dans ce paragraphe.");
+            return;
+        }
+
+        System.out.println("Objets du paragraphe " + id + " :");
+        for (Objet o : objets) {
+            System.out.println("- " + o.getNom());
+        }
+    }
+
     @Override
     public String toString() {
         return "Paragraphe " + id + ": " + texte + "\nChoix: " + choixDisponibles;

@@ -20,12 +20,27 @@ class Inventaire {
 
     // Ajouter un objet à l'inventaire
     public void ajouterObjet(Objet objet) {
-        objets.put(objet.getNom(), objet);
+        if (objets.containsKey(objet.getNom())) {
+            Objet existant = objets.get(objet.getNom());
+            existant.ajouterNombre(objet.getNombre());
+        } else {
+            objets.put(objet.getNom(), objet);
+        }
     }
 
     // Retirer un objet de l'inventaire
-    public void retirerObjet(String nomObjet) {
-        objets.remove(nomObjet);
+    public void retirerObjet(String nomObjet, int quantite) {
+        if (objets.containsKey(nomObjet)) {
+            Objet objet = objets.get(nomObjet);
+
+            if (objet.getNombre() > quantite) {
+                objet.ajouterNombre(-quantite); // on diminue
+            } else {
+                objets.remove(nomObjet); // plus rien → on supprime
+            }
+        } else {
+            System.out.println("Objet non présent dans l'inventaire.");
+        }
     }
 
     // Vérifier si un objet est présent
@@ -40,7 +55,7 @@ class Inventaire {
         } else {
             System.out.println("Inventaire :");
             for (Objet objet : objets.values()) {
-                System.out.println("- " + objet);
+                System.out.println("- " + objet.getNom() + " x" + objet.getNombre());
             }
         }
     }

@@ -704,7 +704,7 @@ Vous vous hissez à la force des bras jusqu'à la trappe et vous
 débouchez dans une petite pièce aux murs de pierre, éclairée à la
 bougie. Le plafond est si bas que vous ne pouvez tenir debout. Vous
 repérez un conduit étroit, percé dans un des murs et, lui faisant face,
-une longue épée suspendue à un crochet. Sa lame a été forgée dans un
+une longue épée suspendue à un crochet. Sa lame a été forgée da24ns un
 métal sombre, presque noir. Si vous voulez la décrocher, rendez-vous au 355.
 Si vous vous faufilez dans le petit tunnel, rendez-vous au 68.
 
@@ -4357,11 +4357,14 @@ Verre. Sans plus attendre, vous la jetez dans le gouffre. Vous l'entendez
 heurter le sol quelques mètres plus bas... sans que cela cause le moindre
 effet. Le périmètre de sol où vous êtes se réduit comme une peau de
 chagrin. Vous devez franchir le gouffre. Rendez-vous au 46.
+
 395
 Arrivé à votre hauteur, l'Ogre pousse un grognement rauque et abat son
 gourdin de toutes ses forces.
 OGRE HABILETÉ : 8 ENDURANCE : 10
-Si vous êtes vainqueur, rendez-vous au 248.396
+Si vous êtes vainqueur, rendez-vous au 248.
+
+396
 Le corps sectionné expulse de longs jets d'une humeur visqueuse et
 jaunâtre. Tentez votre Chance. Si vous êtes Chanceux, rendez-vous au
 67. Si vous êtes Malchanceux, rendez-vous au 251.

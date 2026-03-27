@@ -82,7 +82,8 @@ public class Main {
             System.out.println("3. Afficher le graphe des paragraphes");
             System.out.println("4. Trouver les chemins menant à la victoire");
             System.out.println("5. Trouver le chemin le plus court entre deux paragraphes");
-            System.out.println("6. Quitter");
+            System.out.println("6. Votre inventaire d'objets");
+            System.out.println("7. Quitter");
             System.out.print("Votre choix : ");
 
             int choix = scanner.nextInt();
@@ -97,12 +98,7 @@ public class Main {
                 case 2:
                     System.out.print("\nEntrez le numéro du paragraphe à afficher : ");
                     int num = scanner.nextInt();
-                    Paragraphe p = livre.getParagraphe(num);
-                    if (p != null) {
-                        System.out.println(p);
-                    } else {
-                        System.out.println("Paragraphe introuvable !");
-                    }
+                    livre.jouerParagraphe(num);
                     break;
 
                 case 3:
@@ -128,6 +124,11 @@ public class Main {
                     break;
 
                 case 6:
+                    System.out.print("\n");
+                    livre.getInventaire().afficherInventaire();
+                    break;
+
+                case 7:
                     System.out.println("Au revoir !");
                     scanner.close();
                     return;
