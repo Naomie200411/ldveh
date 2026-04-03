@@ -19,6 +19,14 @@ public class Paragraphe {
     private String type;
     private List<Choix> choixDisponibles;
     private List<Objet> objets ;
+    private int perteEndurance;
+    private int gainEndurance;
+    private int perteHabilete;
+    private int gainHabilete;
+    private int perteChance;
+    private int gainChance;
+    private String objetRequis;
+    private Monstre monstre;
 
     public Paragraphe(int id, String texte) {
         this.id = id;
@@ -59,6 +67,65 @@ public class Paragraphe {
     public List<Objet> getObjets() {
         return objets;
     }
+
+    public int getPerteEndurance() {
+        return perteEndurance;
+    }
+
+    public void setPerteEndurance(int perteEndurance) {
+        this.perteEndurance = perteEndurance;
+    }
+
+    public int getGainEndurance() {
+        return gainEndurance;
+    }
+
+    public void setGainEndurance(int gainEndurance) {
+        this.gainEndurance = gainEndurance;
+    }
+
+    public int getPerteHabilete() {
+        return perteHabilete;
+    }
+
+    public void setPerteHabilete(int perteHabilete) {
+        this.perteHabilete = perteHabilete;
+    }
+
+    public int getGainHabilete() {
+        return gainHabilete;
+    }
+
+    public void setGainHabilete(int gainHabilete) {
+        this.gainHabilete = gainHabilete;
+    }
+
+    public int getPerteChance() {
+        return perteChance;
+    }
+
+    public void setPerteChance(int perteChance) {
+        this.perteChance = perteChance;
+    }
+
+    public int getGainChance() {
+        return gainChance;
+    }
+
+    public void setGainChance(int gainChance) {
+        this.gainChance = gainChance;
+    }
+
+    public String getObjetRequis() {
+    return objetRequis;
+    }
+
+    public void setObjetRequis(String objetRequis) {
+        this.objetRequis = objetRequis;
+    }
+
+    public Monstre getMonstre() { return monstre; }
+    public void setMonstre(Monstre m) { this.monstre = m; }
 
     public void afficherObjets() {
         if (objets.isEmpty()) {

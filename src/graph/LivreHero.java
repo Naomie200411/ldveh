@@ -91,6 +91,24 @@ public class LivreHero implements Iterable<Paragraphe> {
     private String langue;
     private int nombrePages;
 
+    private static final Map<String, Integer> NOMBRES = new HashMap<>();
+
+    static {
+        NOMBRES.put("un", 1);
+        NOMBRES.put("une", 1);
+        NOMBRES.put("deux", 2);
+        NOMBRES.put("trois", 3);
+        NOMBRES.put("quatre", 4);
+        NOMBRES.put("cinq", 5);
+        NOMBRES.put("six", 6);
+        NOMBRES.put("sept", 7);
+        NOMBRES.put("huit", 8);
+        NOMBRES.put("neuf", 9);
+        NOMBRES.put("dix", 10);
+        NOMBRES.put("onze", 11);
+        NOMBRES.put("douze", 12);
+    };
+
     public LivreHero() {
         paragraphes = new LinkedHashMap<>();
         inventaire = new Inventaire();
@@ -194,34 +212,127 @@ public class LivreHero implements Iterable<Paragraphe> {
     }
 
     private int convertirNombre(String texte) {
-
-        Map<String, Integer> nombres = new HashMap<>();
-        nombres.put("un", 1);
-        nombres.put("une", 1);
-        nombres.put("deux", 2);
-        nombres.put("trois", 3);
-        nombres.put("quatre", 4);
-        nombres.put("cinq", 5);
-        nombres.put("six", 6);
-        nombres.put("sept", 7);
-        nombres.put("huit", 8);
-        nombres.put("neuf", 9);
-        nombres.put("dix", 10);
-        nombres.put("onze", 11);
-        nombres.put("douze", 12);
-        nombres.put("treize", 13);
-        nombres.put("quatorze", 14);
-        nombres.put("quinze", 15);
-        nombres.put("seize", 16);
-        nombres.put("vingt", 20);
-        nombres.put("trente", 30);
-
         texte = texte.trim().toLowerCase();
 
         try {
             return Integer.parseInt(texte);
         } catch (NumberFormatException e) {
-            return nombres.getOrDefault(texte, -1);
+            return NOMBRES.getOrDefault(texte, -1);
+        }
+    }
+
+    private void appliquerEffets(Paragraphe p, Joueur joueur) {
+
+        appliquerEffet(joueur, p.getPerteEndurance(), "ENDURANCE", false);
+        appliquerEffet(joueur, p.getGainEndurance(), "ENDURANCE", true);
+
+        appliquerEffet(joueur, p.getPerteHabilete(), "HABILETÉ", false);
+        appliquerEffet(joueur, p.getGainHabilete(), "HABILETÉ", true);
+
+        appliquerEffet(joueur, p.getPerteChance(), "CHANCE", false);
+        appliquerEffet(joueur, p.getGainChance(), "CHANCE", true);
+    }
+
+    private void appliquerEffet(Joueur joueur, int valeur, String type, boolean gain) {
+        if (valeur <= 0) return;
+
+        if (type.equals("ENDURANCE")) {
+            if (gain) joueur.gagnerEndurance(valeur);
+            else joueur.perdreEndurance(valeur);
+        }
+
+        if (type.equals("HABILETÉ")) {
+            if (gain) joueur.gagnerHabilete(valeur);
+            else joueur.perdreHabilete(valeur);
+        }
+
+        if (type.equals("CHANCE")) {
+            if (gain) joueur.gagnerChance(valeur);
+            else joueur.perdreChance(valeur);
+        }
+
+        System.out.println((gain ? "Vous gagnez " : "Vous perdez ") + valeur + " " + type);
+    }
+
+    private void traiterEffets(String ligne, Paragraphe p) {
+
+        Pattern pertePattern = Pattern.compile(
+            "vous perdez\\s+(\\d+)\\s+point[s]?\\s+d['’](endurance|chance|habileté)",
+            Pattern.CASE_INSENSITIVE
+        );
+
+        Pattern gainPattern = Pattern.compile(
+            "vous gagnez\\s+(\\d+)\\s+point[s]?\\s+d['’](endurance|chance|habileté)",
+            Pattern.CASE_INSENSITIVE
+        );
+
+        Matcher mPerte = pertePattern.matcher(ligne);
+        if (mPerte.find()) {
+            int valeur = Integer.parseInt(mPerte.group(1));
+            String type = mPerte.group(2).toLowerCase();
+
+            if (type.contains("endurance")) p.setPerteEndurance(valeur);
+            else if (type.contains("chance")) p.setPerteChance(valeur);
+            else if (type.contains("habilet")) p.setPerteHabilete(valeur);
+        }
+
+        Matcher mGain = gainPattern.matcher(ligne);
+        if (mGain.find()) {
+            int valeur = Integer.parseInt(mGain.group(1));
+            String type = mGain.group(2).toLowerCase();
+
+            if (type.contains("endurance")) p.setGainEndurance(valeur);
+            else if (type.contains("chance")) p.setGainChance(valeur);
+            else if (type.contains("habilet")) p.setGainHabilete(valeur);
+        }
+    }
+
+    private void traiterConditions(String ligne, Paragraphe p) {
+
+        Pattern objetConditionPattern = Pattern.compile(
+            "si vous poss[eé]dez (un|une|des|le|la|les)?\\s*(.+?)[,.]",
+            Pattern.CASE_INSENSITIVE
+        );
+
+        Matcher mCond = objetConditionPattern.matcher(ligne);
+
+        if (mCond.find()) {
+            String objet = mCond.group(2).trim();
+            p.setObjetRequis(objet);
+        }
+    }
+
+    private void traiterChoix(String ligne, Paragraphe p) {
+
+        Pattern choixPattern = Pattern.compile(
+            "rendez-vous au (\\d+)",
+            Pattern.CASE_INSENSITIVE
+        );
+
+        Matcher mChoix = choixPattern.matcher(ligne);
+
+        while (mChoix.find()) {
+            int destination = Integer.parseInt(mChoix.group(1));
+            p.ajouterChoix(new Choix("Aller au " + destination, destination));
+        }
+    }
+
+    private void traiterMonstre(String ligne, Paragraphe p) {
+
+        Pattern monstrePattern = Pattern.compile(
+            "(.+)\\s+HABILET[ÉE]\\s*:\\s*(\\d+)\\s+ENDURANCE\\s*:\\s*(\\d+)",
+            Pattern.CASE_INSENSITIVE
+        );
+
+        Matcher m = monstrePattern.matcher(ligne);
+
+        if (m.find()) {
+            String nom = m.group(1).trim();
+            int habilete = Integer.parseInt(m.group(2));
+            int endurance = Integer.parseInt(m.group(3));
+
+            Monstre monstre = new Monstre(nom, habilete, endurance);
+            p.setMonstre(monstre);
         }
     }
 
@@ -233,20 +344,18 @@ public class LivreHero implements Iterable<Paragraphe> {
 
             Paragraphe paragrapheCourant = null;
 
-            // ➕ pour l'en-tête
             List<String> entete = new ArrayList<>();
             boolean enteteLu = false;
-
-            Pattern numeroPattern = Pattern.compile("^\\d+$");         
-            Pattern choixPattern = Pattern.compile("rendez-vous au (\\d+)", Pattern.CASE_INSENSITIVE);
-            Pattern objetPattern = Pattern.compile("Vous trouvez (un|une|des)\\s+(.+?)([.!?])?$", Pattern.CASE_INSENSITIVE);
+            Pattern numeroPattern = Pattern.compile("^\\d+$"); 
 
             while (scanner.hasNextLine()) {
+
                 String ligne = scanner.nextLine().trim();
                 if (ligne.isEmpty()) continue;
 
                 Matcher mNumero = numeroPattern.matcher(ligne);
 
+               
                 if (!enteteLu && !mNumero.matches()) {
                     entete.add(ligne);
                     continue;
@@ -257,6 +366,7 @@ public class LivreHero implements Iterable<Paragraphe> {
                     enteteLu = true;
                 }
 
+               
                 if (mNumero.matches()) {
                     int numero = Integer.parseInt(ligne);
                     paragrapheCourant = new Paragraphe(numero, "");
@@ -267,14 +377,13 @@ public class LivreHero implements Iterable<Paragraphe> {
 
                 if (paragrapheCourant == null) continue;
 
-                Matcher mChoix = choixPattern.matcher(ligne);
-                while (mChoix.find()) {
-                    int destination = Integer.parseInt(mChoix.group(1));
-                    paragrapheCourant.ajouterChoix(
-                        new Choix("Aller au " + destination, destination)
-                    );
-                }
+               
+                traiterConditions(ligne, paragrapheCourant);
+                traiterEffets(ligne, paragrapheCourant);
+                traiterChoix(ligne, paragrapheCourant);
+                traiterMonstre(ligne, paragrapheCourant);
 
+               
                 if (ligne.toLowerCase().contains("vous trouvez")) {
                     lectureObjets = true;
 
@@ -288,13 +397,13 @@ public class LivreHero implements Iterable<Paragraphe> {
                 }
 
                 if (lectureObjets) {
-                    // si on arrive aux choix, on arrête la lecture des objets
                     if (ligne.toLowerCase().contains("rendez-vous au") ||
                         ligne.toLowerCase().contains("si vous choisissez")) {
 
                         extraireObjetsDepuisBloc(blocObjets.toString(), paragrapheCourant);
                         blocObjets.setLength(0);
                         lectureObjets = false;
+
                     } else {
                         blocObjets.append(" ").append(ligne);
                         continue;
@@ -321,27 +430,59 @@ public class LivreHero implements Iterable<Paragraphe> {
 
      Affiche les choix disponibles. */
 
-    public void jouerParagraphe(int numero) {
+    public boolean jouerParagraphe(int numero, Joueur joueur) {
+
         Paragraphe p = paragraphes.get(numero);
 
         if (p == null) {
             System.out.println("Paragraphe inexistant !");
-            return;
+            return true;
         }
 
         System.out.println("\n--- Paragraphe " + p.getId() + " ---");
         System.out.println(p.getTexte());
 
+        
         for (Objet o : p.getObjets()) {
-            inventaire.ajouterObjet(o);
-            //System.out.println("Vous récupérez : " + o.getNom() + " x" + o.getNombre());
+            joueur.getInventaire().ajouterObjet(o);
+            System.out.println("Vous récupérez : " + o.getNom() + " x" + o.getNombre());
         }
 
+        
+        appliquerEffets(p, joueur);
+
+        if (p.getMonstre() != null) {
+
+            Monstre m = p.getMonstre();
+
+            System.out.println("⚔️ Combat contre : " + m.getNom());
+
+            if (joueur.getEndurance() < m.getEndurance()) {
+                System.out.println("💀 Vous êtes trop faible pour battre ce monstre !");
+                return false;
+            } else {
+                System.out.println("✅ Vous battez le monstre !");
+            }
+        }
+
+        if (p.getObjetRequis() != null &&
+            !joueur.getInventaire().possedeObjet(p.getObjetRequis())) {
+
+            System.out.println("❌ Objet requis : " + p.getObjetRequis());
+            return false;
+        }
+
+       
+        afficherChoix(p);
+        return true;
+    }  
+
+    private void afficherChoix(Paragraphe p) {
         if (!p.getChoixDisponibles().isEmpty()) {
             System.out.println("\nChoix possibles :");
             for (Choix c : p.getChoixDisponibles()) {
                 System.out.println(" - " + c.getDestination());
             }
-        }
     }
+}                                    
 }

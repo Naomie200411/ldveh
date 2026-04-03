@@ -49,6 +49,13 @@ public class Main {
         }FR.afficher(graphe);
         livre.printAllParagraphs();*/
 
+        Random rand = new Random();
+        int endurance = rand.nextInt(6) + rand.nextInt(6) + 12; 
+        int habilete = rand.nextInt(6) + 6; 
+        int chance = rand.nextInt(6) + 6;
+        //Joueur joueur = new Joueur(endurance, habilete, chance);
+        Joueur joueur = new Joueur(2, 1, 1);
+
         Scanner scanner = new Scanner(System.in);
         LivreHero livre = new LivreHero();
         String filePath;
@@ -98,7 +105,13 @@ public class Main {
                 case 2:
                     System.out.print("\nEntrez le numéro du paragraphe à afficher : ");
                     int num = scanner.nextInt();
-                    livre.jouerParagraphe(num);
+                    boolean continuer = livre.jouerParagraphe(num, joueur);
+
+                    if (!continuer) {
+                        System.out.println("Fin du jeu !");
+                        scanner.close();
+                        return; 
+                    }
                     break;
 
                 case 3:
