@@ -66,6 +66,8 @@ public class commentaires {
 
     javac -cp "lib/*" -d build src/graph/*.java && java -cp "build:lib/*" graph.Main
     book/df-50-retour-a-la-montagne-de-feu.txt
+    book/df-36-la-nuit-des-mutants.txt
+    book/exple.txt
     
     */
 }

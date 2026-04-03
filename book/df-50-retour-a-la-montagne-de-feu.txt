@@ -4103,7 +4103,9 @@ Examiner les cristaux géants Rendez-vous au 247
 Prendre le tunnel de gauche Rendez-vous au 124
 Emprunter celui de droite
 Rendez-vous au 38
+
 365
+
 L'Élémental vous soulève par la cheville et entreprend de vous claquer
 méthodiquement contre le sol. Vos hurlements de douleur se mêlent au
 rire démoniaque de Zagor et vous perdez connaissance... Rendez-vous

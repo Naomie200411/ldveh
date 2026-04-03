@@ -290,13 +290,13 @@ public class LivreHero implements Iterable<Paragraphe> {
     private void traiterConditions(String ligne, Paragraphe p) {
 
         Pattern objetConditionPattern = Pattern.compile(
-            "si vous poss[eé]dez (un|une|des|le|la|les)?\\s*(.+?)[,.]",
+            "si vous (poss[eé]dez|avez) (un|une|des|le|la|les)?\\s*(.+?)[,.]",
             Pattern.CASE_INSENSITIVE
         );
 
         Matcher mCond = objetConditionPattern.matcher(ligne);
 
-        if (mCond.find()) {
+        if (mCond.find() && mCond.groupCount() >= 2 && mCond.group(2) != null) {
             String objet = mCond.group(2).trim();
             p.setObjetRequis(objet);
         }
@@ -346,7 +346,7 @@ public class LivreHero implements Iterable<Paragraphe> {
 
             List<String> entete = new ArrayList<>();
             boolean enteteLu = false;
-            Pattern numeroPattern = Pattern.compile("^\\d+$"); 
+            Pattern numeroPattern = Pattern.compile("^(\\d+)");
 
             while (scanner.hasNextLine()) {
 
@@ -354,36 +354,38 @@ public class LivreHero implements Iterable<Paragraphe> {
                 if (ligne.isEmpty()) continue;
 
                 Matcher mNumero = numeroPattern.matcher(ligne);
-
-               
-                if (!enteteLu && !mNumero.matches()) {
-                    entete.add(ligne);
-                    continue;
-                }
+                boolean estNumero = mNumero.find();
 
                 if (!enteteLu) {
-                    lireEntete(entete);
-                    enteteLu = true;
+                    if (!estNumero) {
+                        entete.add(ligne);
+                        continue;
+                    } else {
+                        lireEntete(entete);
+                        enteteLu = true;
+                    }
                 }
 
-               
-                if (mNumero.matches()) {
-                    int numero = Integer.parseInt(ligne);
+                if (estNumero) {
+                    int numero = Integer.parseInt(mNumero.group(1));
                     paragrapheCourant = new Paragraphe(numero, "");
                     paragraphes.put(numero, paragrapheCourant);
-                    lectureObjets = false;
+
+                    String reste = ligne.substring(mNumero.end()).trim();
+                    if (!reste.isEmpty()) {
+                        paragrapheCourant.setTexte(reste + "\n");
+                    }
+
                     continue;
                 }
 
                 if (paragrapheCourant == null) continue;
 
-               
                 traiterConditions(ligne, paragrapheCourant);
                 traiterEffets(ligne, paragrapheCourant);
                 traiterChoix(ligne, paragrapheCourant);
                 traiterMonstre(ligne, paragrapheCourant);
 
-               
                 if (ligne.toLowerCase().contains("vous trouvez")) {
                     lectureObjets = true;
 
@@ -415,7 +417,7 @@ public class LivreHero implements Iterable<Paragraphe> {
                 );
             }
 
-            // ➕ nombre de pages = nombre de paragraphes
+            
             nombrePages = paragraphes.size();
 
         } catch (Exception e) {

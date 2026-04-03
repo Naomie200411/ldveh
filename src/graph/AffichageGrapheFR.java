@@ -49,6 +49,7 @@ public class AffichageGrapheFR {
             couleur = gris
             flèche = graphe orienté
          */
+        
         graph.setAttribute("ui.stylesheet",
                 "node { fill-color: blue; text-size: 16; text-color: black; size: 20px; text-alignment: above; }" +
                 "edge { fill-color: gray; arrow-size: 10px, 5px; }");
@@ -71,9 +72,17 @@ public class AffichageGrapheFR {
 
                 String idEdge = "E" + edgeId++;
 
-                if (graph.getEdge(idEdge) == null) {
-                    graph.addEdge(idEdge, source, dest, true);
+                if (graph.getNode(source) == null) continue;
+                if (graph.getNode(dest) == null) {
+                    System.out.println("⚠️ Noeud manquant: " + dest);
+                    continue;
                 }
+
+                if (source.equals(dest)) continue;
+
+                if (graph.getEdge(source + "_" + dest) != null) continue;
+
+                graph.addEdge(source + "_" + dest, source, dest, true);
             }
         }
 
