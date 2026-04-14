@@ -59,7 +59,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         LivreHero livre = new LivreHero();
         String filePath;
-
+       
         while (true) {
             System.out.println("Entrez le chemin du fichier LDVEH :");
             filePath = scanner.nextLine();
@@ -70,7 +70,7 @@ public class Main {
                 try {
                     livre.chargerDepuisFichier(filePath);
                     System.out.println("Livre chargé avec succès !");
-                    break; // on sort de la boucle
+                    break; 
                 } catch (Exception e) {
                     System.out.println("Erreur lors du chargement du fichier.");
                 }
@@ -81,6 +81,8 @@ public class Main {
 
         GrapheLDVEH graphe = new GrapheLDVEH(livre);
         AnalyseGraphe analyseGraphe = new AnalyseGraphe(graphe);
+        List<Choix> choixPossibles = new ArrayList<>();
+        int first = 0;
 
         while (true) {
             System.out.println("\n=== MENU ===");
@@ -103,15 +105,43 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("\nEntrez le numéro du paragraphe à afficher : ");
-                    int num = scanner.nextInt();
-                    boolean continuer = livre.jouerParagraphe(num, joueur);
-
-                    if (!continuer) {
-                        System.out.println("Fin du jeu !");
-                        scanner.close();
-                        return; 
+                                        // 🔹 FIN DU JEU
+                    if (choixPossibles.isEmpty() && first > 0) {
+                        System.out.println("🏁 Fin du jeu !");
+                        return;
                     }
+
+                    int num = 0;
+
+                    // 🔹 PREMIER PARAGRAPHE
+                    if (first == 0) {
+                        System.out.print("Entrez le numéro du paragraphe : ");
+                        num = scanner.nextInt();
+                    }
+                    // 🔹 SINON on force un choix
+                    else {
+                        System.out.print("Choisissez votre destination : ");
+                        int destination = scanner.nextInt();
+
+                        boolean valide = false;
+                        for (Choix c : choixPossibles) {
+                            if (c.getDestination() == destination) {
+                                valide = true;
+                                num = destination;
+                                break;
+                            }
+                        }
+
+                        if (!valide) {
+                            System.out.println("❌ Choix invalide !");
+                            break;
+                        }
+                    }
+
+                   
+                    choixPossibles = livre.jouerParagraphe(num, joueur);
+
+                    first++;
                     break;
 
                 case 3:

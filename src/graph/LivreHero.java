@@ -432,19 +432,19 @@ public class LivreHero implements Iterable<Paragraphe> {
 
      Affiche les choix disponibles. */
 
-    public boolean jouerParagraphe(int numero, Joueur joueur) {
+    public List<Choix> jouerParagraphe(int numero, Joueur joueur) {
 
         Paragraphe p = paragraphes.get(numero);
 
         if (p == null) {
             System.out.println("Paragraphe inexistant !");
-            return true;
+            return Collections.emptyList();
         }
 
         System.out.println("\n--- Paragraphe " + p.getId() + " ---");
         System.out.println(p.getTexte());
 
-        
+       
         for (Objet o : p.getObjets()) {
             joueur.getInventaire().ajouterObjet(o);
             System.out.println("Vous récupérez : " + o.getNom() + " x" + o.getNombre());
@@ -453,31 +453,33 @@ public class LivreHero implements Iterable<Paragraphe> {
         
         appliquerEffets(p, joueur);
 
+       
         if (p.getMonstre() != null) {
-
             Monstre m = p.getMonstre();
 
             System.out.println("⚔️ Combat contre : " + m.getNom());
 
             if (joueur.getEndurance() < m.getEndurance()) {
-                System.out.println("💀 Vous êtes trop faible pour battre ce monstre !");
-                return false;
+                System.out.println("💀 Vous êtes trop faible !");
+                return Collections.emptyList(); 
             } else {
                 System.out.println("✅ Vous battez le monstre !");
             }
         }
 
+        
         if (p.getObjetRequis() != null &&
             !joueur.getInventaire().possedeObjet(p.getObjetRequis())) {
 
             System.out.println("❌ Objet requis : " + p.getObjetRequis());
-            return false;
+            return Collections.emptyList(); 
         }
 
        
         afficherChoix(p);
-        return true;
-    }  
+
+        return p.getChoixDisponibles(); 
+    }
 
     private void afficherChoix(Paragraphe p) {
         if (!p.getChoixDisponibles().isEmpty()) {
@@ -485,6 +487,6 @@ public class LivreHero implements Iterable<Paragraphe> {
             for (Choix c : p.getChoixDisponibles()) {
                 System.out.println(" - " + c.getDestination());
             }
-    }
-}                                    
+        }
+    }                                    
 }
