@@ -81,6 +81,13 @@ import java.util.*;
 import java.util.regex.*;
 
 public class LivreHero implements Iterable<Paragraphe> {
+    /**
+   Crée un livre vide prêt à être chargé.
+   @requires true
+   @ensures paragraphes != NULL et vide
+   @ensures inventaire != NULL
+   @return un LivreHero initialisé
+*/
 
     private Map<Integer, Paragraphe> paragraphes;
     private Inventaire inventaire;
@@ -335,7 +342,16 @@ public class LivreHero implements Iterable<Paragraphe> {
             p.setMonstre(monstre);
         }
     }
-
+/**
+   Charge un livre depuis un fichier texte.
+   @param cheminFichier chemin du fichier source
+   @requires cheminFichier != NULL
+   @requires fichier lisible et format valide LDVEH
+   @ensures tous les paragraphes sont créés en mémoire
+   @ensures tous les choix sont reliés correctement
+   @ensures tous les objets sont extraits et associés
+   @ensures nombrePages == nombre de paragraphes chargés
+*/
     public void chargerDepuisFichier(String cheminFichier) {
         boolean lectureObjets = false;
         StringBuilder blocObjets = new StringBuilder();
@@ -431,7 +447,18 @@ public class LivreHero implements Iterable<Paragraphe> {
      Ajoute tous les objets du paragraphe à l’inventaire du joueur.
 
      Affiche les choix disponibles. */
-
+/**
+   Permet de jouer un paragraphe.
+   @param numero identifiant du paragraphe
+   @param joueur joueur courant
+   @requires joueur != NULL
+   @requires paragraphe existe ou NULL
+   @ensures affiche le texte du paragraphe
+   @ensures ajoute les objets au joueur
+   @ensures applique les effets du paragraphe
+   @ensures vérifie combat et conditions
+   @return la liste des choix disponibles ou liste vide
+*/
     public List<Choix> jouerParagraphe(int numero, Joueur joueur) {
 
         Paragraphe p = paragraphes.get(numero);

@@ -1,8 +1,37 @@
 package graph;
+ /**
+ * CONTRAT DE LA CLASSE AffichageGrapheFR
+ 
+ */
 
+/**
+ * Affiche graphiquement un graphe LDVEH en utilisant l'algorithme de layout
+ * automatique Fruchterman-Reingold de GraphStream.
+ *
+ * @param grapheLDVEH le graphe LDVEH à visualiser
+ *
+ * @pre grapheLDVEH != null
+ * @pre grapheLDVEH.getNoeuds() != null
+ * @pre tous les noeuds du graphe ont un paragraphe non null
+ * @pre tous les paragraphes ont un id valide (non null)
+ * @pre l’environnement supporte GraphStream avec interface Swing
+ *
+ * @post une fenêtre graphique est affichée à l’écran
+ * @post le nombre de nœuds affichés = grapheLDVEH.getNoeuds().size()
+ * @post chaque nœud affiché possède un label correspondant à son id
+ * @post toutes les relations du graphe sont représentées par des arêtes
+ * @post le layout Fruchterman-Reingold est activé
+ *
+ * @throws NullPointerException si grapheLDVEH == null
+ * @throws NullPointerException si grapheLDVEH.getNoeuds() == null
+ * @throws NullPointerException si un noeud contient un paragraphe null
+*/
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
+
+
+
 
 /*  Cette classe sert à visualiser le graphe LDVEH avec la bibliothèque GraphStream, 
     qui utilise un algorithme de placement automatique proche de Fruchterman–Reingold force-directed algorithm.
@@ -86,7 +115,7 @@ public class AffichageGrapheFR {
             }
         }
 
-        // 🔹 Affichage avec layout automatique (Fruchterman-Reingold)
+        //  Affichage avec layout automatique (Fruchterman-Reingold)
         Viewer viewer = graph.display();
         viewer.enableAutoLayout();
     }

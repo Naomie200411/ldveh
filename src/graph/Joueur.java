@@ -1,5 +1,21 @@
 package graph;
 
+
+/**
+   Crée un joueur avec ses caractéristiques initiales.
+   @param endurance est l’endurance initiale du joueur
+   @param habilete est l’habileté initiale du joueur
+   @param chance est la chance initiale du joueur
+   @requires endurance >= 0
+   @requires habilete >= 0
+   @requires chance >= 0
+   @ensures resultat.endurance == endurance
+   @ensures resultat.habilete == habilete
+   @ensures resultat.chance == chance
+   @ensures resultat.inventaire != NULL
+   @return un joueur initialisé
+*/
+
 public class Joueur {
     private int endurance;
     private int habilete;

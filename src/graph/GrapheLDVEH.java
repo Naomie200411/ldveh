@@ -1,5 +1,15 @@
 package graph;
-
+/**
+   Construit un graphe à partir d’un livre.
+   @param livre est le livre contenant les paragraphes
+   @requires livre != NULL
+   @requires chaque Paragraphe de livre possède un id unique
+   @requires chaque Paragraphe possède une liste de choix initialisée
+   @ensures tous les paragraphes du livre sont transformés en NoeudGraphe
+   @ensures chaque noeud est stocké dans la structure noeuds
+   @ensures les arêtes du graphe correspondent aux choix des paragraphes
+   @return un graphe construit à partir du livre
+*/
 import java.util.*;
 
 // Représentation du graphe du LDVEH

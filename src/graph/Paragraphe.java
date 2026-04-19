@@ -9,7 +9,19 @@ identifiée par un numéro
 depuis laquelle le lecteur peut faire un ou plusieurs choix*/
 
 package graph;
-
+ /**
+       Crée un paragraphe du livre.
+       @param id est l’identifiant du paragraphe
+       @param texte est le contenu du paragraphe
+       @requires id >= 0
+       @requires texte != NULL
+       @ensures this.id == id
+       @ensures this.texte == texte
+       @ensures this.choixDisponibles != NULL
+       @ensures this.objets != NULL
+       @ensures this.type == "Livre"
+       @return un paragraphe initialisé
+    */
 import java.util.ArrayList;
 import java.util.List;
 

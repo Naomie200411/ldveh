@@ -13,6 +13,20 @@ une potion */
 
 package graph;
 
+/**
+       Crée un objet du jeu.
+       @param nom est le nom de l’objet
+       @param description est la description de l’objet
+       @param nombre est la quantité de l’objet
+       @requires nom != NULL
+       @requires description != NULL
+       @requires nombre >= 0
+       @ensures this.nom == nom
+       @ensures this.description == description
+       @ensures this.nombre == nombre
+       @return un objet initialisé
+    */
+
 import java.util.HashMap;
 import java.util.Map;
 

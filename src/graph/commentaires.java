@@ -29,7 +29,7 @@ public class commentaires {
 
     Précédents = {16→10, 11→10, 20→10, 50→10}
 
-    On trouve 50 immédiatement dans les voisins de 10*/
+    On trouve 50 immédiatement dans les voisins de 10* /
 
 
 

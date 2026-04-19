@@ -13,7 +13,7 @@ public class AnalyseGraphe {
     }
 
     /**
-     * 🔹 Détecte automatiquement les paragraphes de victoire
+     *  Détecte automatiquement les paragraphes de victoire
      *     Ce sont les paragraphes qui n'ont aucun choix disponible
      */
     private Set<Integer> detecterParagraphesDeVictoire() {
@@ -27,7 +27,7 @@ public class AnalyseGraphe {
     }
 
     /**
-     * 🔹 Trouve tous les chemins gagnants à partir d'un paragraphe de départ
+     *  Trouve tous les chemins gagnants à partir d'un paragraphe de départ
      */
     /*public List<List<Integer>> trouverCheminsGagnants(int depart) {
         List<List<Integer>> chemins = new LinkedList<>();
@@ -44,7 +44,7 @@ public class AnalyseGraphe {
     }
 
     /**
-     * 🔹 Fonction récursive pour explorer tous les chemins
+     *  Fonction récursive pour explorer tous les chemins
      */
     private void explorerChemins(int courantId, Stack<Integer> cheminActuel, List<List<Integer>> chemins) {
         cheminActuel.push(courantId);
@@ -69,7 +69,7 @@ public class AnalyseGraphe {
     }
 
     /**
-     * 🔹 Affiche tous les chemins gagnants depuis un départ
+     *  Affiche tous les chemins gagnants depuis un départ
      */
     /*public void afficherCheminsGagnants(int depart) {
         List<List<Integer>> chemins = trouverCheminsGagnants(depart);

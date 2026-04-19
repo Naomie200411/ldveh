@@ -1,5 +1,13 @@
 package graph;
-
+/**
+       Crée un nœud de graphe à partir d’un paragraphe.
+       @param p est le paragraphe associé au nœud
+       @requires p != NULL
+       @ensures this.paragraphe == p
+       @ensures this.voisins != NULL et vide
+       @ensures x et y sont initialisés aléatoirement dans [0, 500]
+       @return un nœud de graphe initialisé
+    */
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,47 +1,13 @@
-/*La classe Choix sert à représenter une décision possible du lecteur dans un livre dont vous êtes le héros.
-
-Autrement dit :
-
-quand le texte dit
-« Si tu veux ouvrir la porte, rends-toi au paragraphe 42 »
-c’est un objet Choix.*/
-
-/**
- * Invariant :
- * - description != null
- * - description non vide
- * - destination >= 0
- */
-
-/**
- * Constructeur
- * Préconditions :
- * - description != null
- * - description non vide
- * - destination >= 0
- * Postconditions :
- * - this.description == description
- * - this.destination == destination
- */
-
-/**
- * getDescription
- * Postconditions :
- * - retourne description (non null)
- */
-
-/**
- * getDestination
- * Postconditions :
- * - retourne destination (>= 0)
- */
-
-/**
- * toString
- * Postconditions :
- * - retourne une chaîne non nulle sous forme "description -> destination"
- */
-
+ /**
+       Crée un choix reliant une description à une destination.
+       @param description est le texte du choix
+       @param destination est l’identifiant de la destination
+       @requires description != NULL
+       @requires destination >= 0
+       @ensures this.description == description
+       @ensures this.destination == destination
+       @return un choix initialisé
+    */
 package graph;
 import java.util.List;
 

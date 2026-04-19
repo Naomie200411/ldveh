@@ -7,7 +7,15 @@ courant → garde une référence au dernier paragraphe retourné, utile pour re
 */
 
 package graph;
-
+/**
+       Crée un itérateur sur les paragraphes d’un livre.
+       @param paragraphes est la map des paragraphes du livre
+       @requires paragraphes != NULL
+       @requires paragraphes.values() != NULL
+       @ensures it est initialisé sur les valeurs de paragraphes
+       @ensures courant == NULL
+       @return un itérateur prêt à parcourir les paragraphes
+    */
 import java.util.*;
 
 public class LivreHeroIterator implements Iterator<Paragraphe> {
