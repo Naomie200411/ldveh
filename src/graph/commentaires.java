@@ -29,7 +29,7 @@ public class commentaires {
 
     Précédents = {16→10, 11→10, 20→10, 50→10}
 
-    🔹 On trouve 50 immédiatement dans les voisins de 10*/
+    On trouve 50 immédiatement dans les voisins de 10*/
 
 
 
@@ -45,7 +45,7 @@ public class commentaires {
 
     Le backtracking signifie :
 
-    👉 "Je descends dans un chemin…
+     "Je descends dans un chemin…
     si j’arrive au bout, je reviens en arrière pour essayer un autre chemin."
 
     C’est exactement comme dans un labyrinthe :

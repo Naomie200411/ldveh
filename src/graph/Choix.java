@@ -6,6 +6,42 @@ quand le texte dit
 « Si tu veux ouvrir la porte, rends-toi au paragraphe 42 »
 c’est un objet Choix.*/
 
+/**
+ * Invariant :
+ * - description != null
+ * - description non vide
+ * - destination >= 0
+ */
+
+/**
+ * Constructeur
+ * Préconditions :
+ * - description != null
+ * - description non vide
+ * - destination >= 0
+ * Postconditions :
+ * - this.description == description
+ * - this.destination == destination
+ */
+
+/**
+ * getDescription
+ * Postconditions :
+ * - retourne description (non null)
+ */
+
+/**
+ * getDestination
+ * Postconditions :
+ * - retourne destination (>= 0)
+ */
+
+/**
+ * toString
+ * Postconditions :
+ * - retourne une chaîne non nulle sous forme "description -> destination"
+ */
+
 package graph;
 import java.util.List;
 

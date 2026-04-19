@@ -17,9 +17,9 @@ gérer l’inventaire du joueur
 C’est le lien entre le fichier texte et le jeu/graphe.
 
 
-🔹 chargerDepuisFichier(String cheminFichier) ⭐
+ chargerDepuisFichier(String cheminFichier) 
 
-👉 La plus importante
+ La plus importante
 
 Elle fait ceci :
 
@@ -35,12 +35,12 @@ quand elle voit “Vous trouvez un …” → crée un objet
 
 range tout au bon endroit
 
-💡 Après ça, le livre est entièrement chargé en mémoire.
+ Après ça, le livre est entièrement chargé en mémoire.
 
 
-🔹 jouerParagraphe(int numero)
+ jouerParagraphe(int numero)
 
-👉 Sert à lire un paragraphe comme dans un jeu
+Sert à lire un paragraphe comme dans un jeu
 
 affiche le texte
 
@@ -48,16 +48,16 @@ récupère les objets du paragraphe
 
 les met dans l’inventaire
 
-➡️ C’est une première version de gameplay.
+ C’est une première version de gameplay.
 
 
-🔹 getParagraphe(int numero)
+ getParagraphe(int numero)
 
-👉 Permet d’aller chercher une page précise du livre.
+ Permet d’aller chercher une page précise du livre.
 
-🔹 getParagraphes()
+ getParagraphes()
 
-👉 Permet d’avoir tout le livre
+ Permet d’avoir tout le livre
 (utilisé pour le graphe et les analyses)  
 
 
@@ -460,10 +460,10 @@ public class LivreHero implements Iterable<Paragraphe> {
             System.out.println("⚔️ Combat contre : " + m.getNom());
 
             if (joueur.getEndurance() < m.getEndurance()) {
-                System.out.println("💀 Vous êtes trop faible !");
+                System.out.println(" Vous êtes trop faible !");
                 return Collections.emptyList(); 
             } else {
-                System.out.println("✅ Vous battez le monstre !");
+                System.out.println(" Vous battez le monstre !");
             }
         }
 
@@ -471,7 +471,7 @@ public class LivreHero implements Iterable<Paragraphe> {
         if (p.getObjetRequis() != null &&
             !joueur.getInventaire().possedeObjet(p.getObjetRequis())) {
 
-            System.out.println("❌ Objet requis : " + p.getObjetRequis());
+            System.out.println(" Objet requis : " + p.getObjetRequis());
             return Collections.emptyList(); 
         }
 

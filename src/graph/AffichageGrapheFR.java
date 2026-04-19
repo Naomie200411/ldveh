@@ -74,7 +74,7 @@ public class AffichageGrapheFR {
 
                 if (graph.getNode(source) == null) continue;
                 if (graph.getNode(dest) == null) {
-                    System.out.println("⚠️ Noeud manquant: " + dest);
+                    System.out.println(" Noeud manquant: " + dest);
                     continue;
                 }
 

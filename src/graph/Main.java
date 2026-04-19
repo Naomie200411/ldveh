@@ -75,7 +75,7 @@ public class Main {
                     System.out.println("Erreur lors du chargement du fichier.");
                 }
             } else {
-                System.out.println("❌ Le fichier n'existe pas. Réessayez.");
+                System.out.println("Le fichier n'existe pas. Réessayez.");
             }
         }
 
@@ -133,7 +133,7 @@ public class Main {
                         }
 
                         if (!valide) {
-                            System.out.println("❌ Choix invalide !");
+                            System.out.println(" Choix invalide !");
                             break;
                         }
                     }
