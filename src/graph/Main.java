@@ -105,20 +105,13 @@ public class Main {
                     break;
 
                 case 2:
-                                        // 🔹 FIN DU JEU
-                    if (choixPossibles.isEmpty() && first > 0) {
-                        System.out.println("🏁 Fin du jeu !");
-                        return;
-                    }
 
                     int num = 0;
-
-                    // 🔹 PREMIER PARAGRAPHE
                     if (first == 0) {
                         System.out.print("Entrez le numéro du paragraphe : ");
                         num = scanner.nextInt();
                     }
-                    // 🔹 SINON on force un choix
+           
                     else {
                         System.out.print("Choisissez votre destination : ");
                         int destination = scanner.nextInt();
@@ -179,6 +172,12 @@ public class Main {
                 default:
                     System.out.println("Choix invalide, veuillez réessayer.");
             }
+
+             if (choixPossibles.isEmpty() && first > 0) {
+                        System.out.println("Fin du jeu !");
+                        scanner.close();
+                        return;
+             }
         }
 
     }

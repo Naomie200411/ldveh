@@ -77,7 +77,7 @@ class Inventaire {
        @return true si l’objet est présent, false sinon
     */
 
-    /
+    
     public boolean possedeObjet(String nomObjet) {
         return objets.containsKey(nomObjet);
     }
