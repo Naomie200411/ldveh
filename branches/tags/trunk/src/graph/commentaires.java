@@ -59,11 +59,12 @@ public class commentaires {
     Tu prends un autre chemin
 
     chemin.pop();
-
+    
+    cd branches/tags/trunk
     javac -cp "lib/*" -d build src/graph/*.java && java -cp "build:lib/*" graph.Main
-    book/df-50-retour-a-la-montagne-de-feu.txt
-    book/df-36-la-nuit-des-mutants.txt
-    book/exple.txt
+    ressources/df-50-retour-a-la-montagne-de-feu.txt
+    ressources/df-36-la-nuit-des-mutants.txt
+    ressources/exple.txt
     
     */
 }
