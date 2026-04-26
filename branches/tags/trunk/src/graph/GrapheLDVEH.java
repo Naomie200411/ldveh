@@ -75,7 +75,7 @@ public class GrapheLDVEH {
         file.add(depart);
         visites.add(depart);
 
-        // 🔹 BFS
+        //  BFS
         while (!file.isEmpty()) {
             NoeudGraphe courant = file.poll();
 
@@ -92,7 +92,7 @@ public class GrapheLDVEH {
             }
         }
 
-        // 🔹 Reconstruction du chemin
+        //  Reconstruction du chemin
         List<Integer> chemin = new ArrayList<>();
         NoeudGraphe courant = arrivee;
 
